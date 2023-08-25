@@ -1,0 +1,2 @@
+from .test_model_custom_user import CustomUserTest
+from .test_model_custom_profile import ProfileTest
