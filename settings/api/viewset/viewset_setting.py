@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from settings.api.serializers import SettingsThemeSerializer
 from settings.models import Settings
 
+
 class SettingViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Settings.objects.all()

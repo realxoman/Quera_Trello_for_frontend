@@ -7,6 +7,7 @@ from workspace.api.serializers import ProjectSerializer
 class ProjectsViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]
+
     def get_queryset(self):
         return Project.objects.filter(workspace_id=self.kwargs['workspace_pk'])
 

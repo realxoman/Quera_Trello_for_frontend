@@ -9,6 +9,7 @@ from workspace.api.serializers import BoardSerializer
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
     permission_classes = [IsAuthenticated]
+
     def get_queryset(self):
         return Board.objects.filter(
             project_id=self.kwargs['project_pk']).order_by('order')
