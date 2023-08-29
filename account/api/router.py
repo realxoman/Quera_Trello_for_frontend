@@ -4,20 +4,30 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView
 )
-from account.api.viewset import UserViewSet, ChangePasswordViewSet
+from account.api.viewset import (
+    UserViewSet,
+    ChangePasswordViewSet,
+    ResetPasswordViewSet,
+    ResetPasswordTokenViewSet,
+    SetPasswordViewSet
+)
 
-app_name = 'accounts'
-
-# Create the router for standard UserViewSet
 router = routers.DefaultRouter()
 router.register('users', UserViewSet, basename='users')
 
 urlpatterns = [
-    # Register standard UserViewSet URLs
+    # Registration
     path('', include(router.urls)),
 
-    # Custom ChangePasswordViewSet action URL
-    path('change-password/', ChangePasswordViewSet.as_view({'put': 'change_password'}), name='change-password'),
+    # Change/Reset password
+    path('change-password/', ChangePasswordViewSet.as_view(
+        {'put': 'change_password'}), name='change-password'),
+    path("reset-password/", ResetPasswordViewSet.as_view(),
+         name="reset-password-request"),
+    path("reset-password/validate-token/",
+         ResetPasswordTokenViewSet.as_view(), name="reset-password-validate"),
+    path("reset-password/set-password/",
+         SetPasswordViewSet.as_view(), name="reset-password-confirm"),
 
     # JWT
     path('login/', TokenObtainPairView.as_view(), name='jwt-login'),
