@@ -1,0 +1,5 @@
+from .viewset_users_register import UserViewSet
+from .viewset_change_password import ChangePasswordViewSet
+from .viewset_reset_password import ResetPasswordViewSet
+from .viewset_reset_password_token import ResetPasswordTokenViewSet
+from .viewset_set_password import SetPasswordViewSet
