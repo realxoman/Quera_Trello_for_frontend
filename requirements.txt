@@ -5,6 +5,7 @@ Pillow==10.0.0
 djangorestframework==3.14.0
 django-filter==23.2
 drf-nested-routers==0.93.4
+django-cors-headers==4.2.0
 
 # Reformatting
 flake8==6.1.0
