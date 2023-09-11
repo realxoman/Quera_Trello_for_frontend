@@ -1,10 +1,12 @@
 from rest_framework import routers
-
+from django.urls import path
 from settings.api.viewset import SettingViewSet
 
 
 app_name = 'setting_router'
 router = routers.DefaultRouter()
-router.register('settings', SettingViewSet, basename='settings')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('settings/',
+         SettingViewSet.as_view({'post': 'create'}), name='settings'),
+]
