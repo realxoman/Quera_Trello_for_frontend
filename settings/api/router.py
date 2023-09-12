@@ -8,5 +8,5 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('settings/',
-         SettingViewSet.as_view({'post': 'create'}), name='settings'),
+         SettingViewSet.as_view(), name='settings'),
 ]
