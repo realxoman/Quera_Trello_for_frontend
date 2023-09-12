@@ -16,3 +16,6 @@ drf-spectacular-sidecar==2023.8.1
 
 # Authentication
 djangorestframework-simplejwt==5.2.2
+
+django-seed
+psycopg2

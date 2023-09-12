@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'drf_spectacular_sidecar',
     'rest_framework_simplejwt',
     "corsheaders",
+    'django_seed',
 
     #My Apps
     'account.apps.AccountConfig',
