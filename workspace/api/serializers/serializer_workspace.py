@@ -7,7 +7,7 @@ class WorkspaceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Workspace
-        fields = ['id', 'name', 'creator', 'color']
+        fields = ['id', 'name', 'color']
 
         def create(self, validated_data):
             print("Validation errors:", self.errors)
