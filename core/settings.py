@@ -168,3 +168,12 @@ SPECTACULAR_SETTINGS = {
 }
 
 AUTH_USER_MODEL = 'account.CustomUser'
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "quera.task.server@gmail.com"
+EMAIL_HOST_PASSWORD = "Quera2023"
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "quera.task.server@gmail.com"

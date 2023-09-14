@@ -21,12 +21,12 @@ class ResetPasswordViewSet(generics.GenericAPIView):
         current_site = get_current_site(
             request=request).domain
         absurl = 'http://'+current_site+relativeLink+"?token="+str(token)
-        email_body = 'Hi '+user.email + \
-            '\nUse the link below to reset your password \n' + absurl
+        email_body = 'سلام '+user.email + \
+            '\nاز لینک زیر برای تغییر رمز عبور خود استفاده کنید. \n' + absurl
         data = {
             'email_body': email_body,
             'to_email': user.email,
-            'email_subject': 'Verify your email'
+            'email_subject': 'تایید تغییر رمز عبور'
         }
 
         Util.send_email(data)
