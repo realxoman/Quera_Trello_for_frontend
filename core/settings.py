@@ -171,9 +171,9 @@ AUTH_USER_MODEL = 'account.CustomUser'
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST = "falkenstein-02.bpanel.xyz"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "quera.task.server@gmail.com"
-EMAIL_HOST_PASSWORD = "Quera2023"
+EMAIL_HOST_USER = "quera@aliesm.com"
+EMAIL_HOST_PASSWORD = "=8kLh_vW!~r^"
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = "quera.task.server@gmail.com"
+DEFAULT_FROM_EMAIL = "quera@aliesm.com"

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework import routers
 
 from account.api.viewset import (
@@ -10,13 +10,10 @@ from account.api.viewset import (
 )
 
 router = routers.DefaultRouter()
+router.register('', UserRegisterViewSet)
 
 
 urlpatterns = [
-    # Registration
-    path('register/',
-         UserRegisterViewSet.as_view({'post': 'create'}), name='register'),
-
     # Change/Reset password
     path('change-password/', ChangePasswordViewSet.as_view(
         {'put': 'change_password'}), name='change-password'),
@@ -26,4 +23,6 @@ urlpatterns = [
          ResetPasswordTokenViewSet.as_view(), name="reset-password-validate"),
     path("reset-password/set-password/",
          SetPasswordViewSet.as_view(), name="reset-password-confirm"),
+    # Registration
+    path(r'', include(router.urls)),
 ]
