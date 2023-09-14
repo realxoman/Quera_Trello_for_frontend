@@ -18,9 +18,8 @@ class ResetPasswordViewSet(generics.GenericAPIView):
         user = serializer.validated_data["user"]
         token = RefreshToken.for_user(user).access_token
         relativeLink = reverse('account_urls:reset-password-confirm')
-        current_site = get_current_site(
-            request=request).domain
-        absurl = 'http://'+current_site+relativeLink+"?token="+str(token)
+        current_site = 'localhost:3000/'
+        absurl = 'http://'+current_site+'Reset-password/'+"?token="+str(token)
         email_body = 'سلام '+user.email + \
             '\nاز لینک زیر برای تغییر رمز عبور خود استفاده کنید. \n' + absurl
         data = {
