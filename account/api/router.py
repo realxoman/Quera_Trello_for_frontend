@@ -23,6 +23,4 @@ urlpatterns = [
          ResetPasswordTokenViewSet.as_view(), name="reset-password-validate"),
     path("reset-password/set-password/",
          SetPasswordViewSet.as_view(), name="reset-password-confirm"),
-    # Registration
-    path(r'', include(router.urls)),
 ]
