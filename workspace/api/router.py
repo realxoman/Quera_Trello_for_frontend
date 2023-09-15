@@ -10,7 +10,7 @@ from workspace.api.viewset import (
 
 app_name = 'workspace_router'
 router = routers.DefaultRouter()
-router.register('workspaces', WorkspaceViewSet)
+router.register('workspaces', WorkspaceViewSet, basename='workspace')
 
 # Workspaces endpoints
 workspaces_routers = routers.NestedDefaultRouter(

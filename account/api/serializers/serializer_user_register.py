@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-
+from settings.models import Settings
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=255, write_only=True)
@@ -21,4 +21,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = get_user_model().objects.create_user(**validated_data)
+        settings = Settings.objects.create(user=user, theme=0)
+        settings.save()
         return user

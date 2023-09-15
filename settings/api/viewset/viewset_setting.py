@@ -6,8 +6,12 @@ from settings.models import Settings
 
 class SettingViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
-    queryset = Settings.objects.all()
     serializer_class = SettingsThemeSerializer
+
+    def get_queryset(self):
+        # Filter the queryset to include only settings related to the authenticated user
+        return Settings.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+

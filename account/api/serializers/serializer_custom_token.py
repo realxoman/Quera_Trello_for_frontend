@@ -9,5 +9,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         validated_data['email'] = self.user.email
         validated_data['first_name'] = self.user.first_name
         validated_data['last_name'] = self.user.last_name
+        validated_data['phone_number'] = self.user.phone_number
+        try:
+            validated_data['thumbnail'] = self.user.thumbnail.url
+        except:
+            validated_data['thumbnail'] = ''
 
         return validated_data
