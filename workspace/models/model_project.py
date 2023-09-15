@@ -9,7 +9,7 @@ class Project(DateBasic):
 
     workspace = models.ForeignKey(
         Workspace, on_delete=models.CASCADE, related_name='projects')
-    name = models.BigIntegerField(_("name"), default=0)
+    name = models.CharField(_('name'), max_length=255)
 
     class Meta:
         verbose_name = _('Project')

@@ -4,15 +4,15 @@ from workspace.models import TaskComment
 
 @admin.register(TaskComment)
 class TaskCommentAdmin(admin.ModelAdmin):
-    list_display = ('task', 'author', 'text', 'created_at', 'updated_at')
-    search_fields = ('task', 'autor', 'text')
+    list_display = ('task',  'text', 'created_at', 'updated_at')
+    search_fields = ('task', 'text')
 
     fieldsets = (
         ('Main',
-         {'fields': ('task', 'author', 'text')}),
+         {'fields': ('task',  'text')}),
     )
 
     add_fieldsets = (
         ('Main',
-         {'fields': ('task', 'author', 'text')}),
+         {'fields': ('task',  'text')}),
     )
