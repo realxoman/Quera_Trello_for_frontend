@@ -21,9 +21,6 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'password',
                   'first_name', 'last_name', 'phone_number', 'thumbnail']
 
-    def get_thumbnail(self, obj):
-        return obj.thumbnail.url if obj.thumbnail else None
-
     def validate(self, value):
         if get_user_model().objects.filter(username=value).exists():
             raise serializers.ValidationError(
