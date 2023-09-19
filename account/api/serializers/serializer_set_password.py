@@ -6,6 +6,15 @@ from account.models import CustomUser
 
 
 class SetPasswordSerializer(serializers.Serializer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Customize the error message for required fields
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.error_messages['required'] = f'فیلد \
+                `{field.label}` الزامی است.'
+
     token = serializers.CharField(max_length=600)
     password = serializers.CharField(
         min_length=8, max_length=32, write_only=True)

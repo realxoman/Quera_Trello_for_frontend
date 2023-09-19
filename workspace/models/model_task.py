@@ -9,12 +9,12 @@ class Task(DateBasic):
 
     board = models.ForeignKey(
         Board, on_delete=models.CASCADE, related_name='tasks')
-    name = models.CharField(_('name'), max_length=255)
+    name = models.CharField(_('نام'), max_length=255)
     description = models.TextField(
-        _("description"), max_length=500, blank=True)
-    deadline = models.DateField(_("deadline"), auto_now_add=True)
-    priority = models.BigIntegerField(_("priority"), default=0)
-    order = models.BigIntegerField(_("order"), default=0)
+        _("توضیحات"), max_length=500, blank=True)
+    deadline = models.DateField(_("ددلاین"), auto_now_add=True)
+    priority = models.BigIntegerField(_("اولویت"), default=0)
+    order = models.BigIntegerField(_("ترتیب"), default=0)
 
     class Meta:
         verbose_name = _('Task')

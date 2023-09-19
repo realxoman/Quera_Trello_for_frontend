@@ -6,13 +6,10 @@ from django.utils.translation import gettext_lazy as _
 
 class Workspace(DateBasic):
 
-    name = models.CharField(_('name'), max_length=255)
+    name = models.CharField(_('نام'), max_length=255)
     creator = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, related_name='workspaces')
-    thumbnail = models.ImageField(_('thumbnail'), blank=True, null=True)
-    thumbnail_alt = models.CharField(
-        _('thumbnail alt'), max_length=350, blank=True
-        )
+    color = models.CharField(_('رنگ'), max_length=256, default='#000')
 
     class Meta:
         verbose_name = _('Workspace')

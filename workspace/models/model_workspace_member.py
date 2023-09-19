@@ -10,8 +10,9 @@ class WorkspaceMember(DateBasic):
 
     workspace = models.ForeignKey(
         Workspace, on_delete=models.CASCADE, related_name='workspace_members')
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    role = models.CharField(_('role'), max_length=350)
+    user = models.ForeignKey(
+        get_user_model(), on_delete=models.CASCADE, verbose_name=_('کاربر'),)
+    role = models.CharField(_('نقش‌کاربری'), max_length=350)
 
     class Meta:
         verbose_name = _('Workspace Member')

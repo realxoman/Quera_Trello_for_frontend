@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'drf_spectacular_sidecar',
     'rest_framework_simplejwt',
     "corsheaders",
+    'django_seed',
 
     #My Apps
     'account.apps.AccountConfig',
@@ -128,7 +129,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fa'
 
 TIME_ZONE = 'UTC'
 
@@ -151,9 +152,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        # 'rest_framework.authentication.BasicAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+from datetime import timedelta
+# Config JWT
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
+
 
 # drf-spectacular
 SPECTACULAR_SETTINGS = {
@@ -167,3 +177,12 @@ SPECTACULAR_SETTINGS = {
 }
 
 AUTH_USER_MODEL = 'account.CustomUser'
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "falkenstein-02.bpanel.xyz"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "quera@aliesm.com"
+EMAIL_HOST_PASSWORD = "=8kLh_vW!~r^"
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = "quera@aliesm.com"
