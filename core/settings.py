@@ -160,7 +160,7 @@ REST_FRAMEWORK = {
 from datetime import timedelta
 # Config JWT
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=6),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
