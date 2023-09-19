@@ -8,8 +8,8 @@ class Board(DateBasic):
 
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name='boards')
-    name = models.CharField(_('name'), max_length=200)
-    order = models.BigIntegerField(_("order"), default=0)
+    name = models.CharField(_('نام'), max_length=200)
+    order = models.BigIntegerField(_("ترتیب"), default=0)
 
     class Meta:
         verbose_name = _('Board')

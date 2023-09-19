@@ -2,6 +2,15 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Customize the error message for required fields
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.error_messages['required'] = f'فیلد `{field.label}` الزامی است.'
+
+
     def validate(self, attrs):
         validated_data = super().validate(attrs)
         validated_data['user_id'] = self.user.id
