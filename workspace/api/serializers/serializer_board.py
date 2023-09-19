@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from workspace.models import Board
-
+from workspace.models import Board, Task
+from workspace.api.serializers.serializer_task import TaskSerializer
 
 class BoardSerializer(serializers.ModelSerializer):
     tasks = serializers.SerializerMethodField()
@@ -17,13 +17,15 @@ class BoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ['id', 'name', 'order']
+        fields = ['id', 'name', 'order', 'tasks', 'tasks_count']
 
     def get_tasks(self, obj):
-        pass
+        tasks = Task.objects.filter(board_id=obj.id)
+        return TaskSerializer(tasks, many=True).data
 
     def get_tasks_count(self, obj):
-        pass
+        task_count = Task.objects.filter(board_id=obj.id).count()
+        return task_count
 
     def create(self, validated_data):
         project_id = self.context['project_id']
