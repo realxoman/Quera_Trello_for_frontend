@@ -4,6 +4,8 @@ from workspace.models import Board
 
 
 class BoardSerializer(serializers.ModelSerializer):
+    tasks = serializers.SerializerMethodField()
+    tasks_count = serializers.SerializerMethodField()
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -16,6 +18,12 @@ class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
         fields = ['id', 'name', 'order']
+
+    def get_tasks(self, obj):
+        pass
+
+    def get_tasks_count(self, obj):
+        pass
 
     def create(self, validated_data):
         project_id = self.context['project_id']
