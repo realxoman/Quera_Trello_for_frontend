@@ -1,7 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import generics, status
-from django.contrib.sites.shortcuts import get_current_site
-from django.urls import reverse
+# from django.urls import reverse
 from rest_framework_simplejwt.tokens import RefreshToken
 from utils.send_email import (
     Util
@@ -17,7 +16,7 @@ class ResetPasswordViewSet(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
         token = RefreshToken.for_user(user).access_token
-        relativeLink = reverse('account_urls:reset-password-confirm')
+        # relativeLink = reverse('account_urls:reset-password-confirm')
         current_site = 'localhost:3000/'
         absurl = 'http://'+current_site+'Reset-password/'+"?token="+str(token)
         email_body = 'سلام '+user.email + \

@@ -8,8 +8,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         # Customize the error message for required fields
         for field_name, field in self.fields.items():
             if field.required:
-                field.error_messages['required'] = f'فیلد `{field.label}` الزامی است.'
-
+                field.error_messages['required'] = f'فیلد \
+                `{field.label}` الزامی است.'
 
     def validate(self, attrs):
         validated_data = super().validate(attrs)
@@ -21,7 +21,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         validated_data['phone_number'] = self.user.phone_number
         try:
             validated_data['thumbnail'] = self.user.thumbnail.url
-        except:
+        except Exception:
             validated_data['thumbnail'] = ''
 
         return validated_data
