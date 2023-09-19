@@ -3,9 +3,11 @@ from rest_framework import serializers
 from workspace.models import Board, Task
 from workspace.api.serializers.serializer_task import TaskSerializer
 
+
 class BoardSerializer(serializers.ModelSerializer):
     tasks = serializers.SerializerMethodField()
     tasks_count = serializers.SerializerMethodField()
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

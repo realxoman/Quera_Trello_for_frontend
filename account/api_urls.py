@@ -7,10 +7,10 @@ from account.api.router import router
 
 app_name = 'account_urls'
 urlpatterns = [
-    path('account/', include('account.api.router')),
-    path('account/token/',
+    path('accounts/', include('account.api.router')),
+    path('accounts/token/',
          CustomTokenObtainPairViewSet.as_view(), name='token-login'),
-    path('account/token/refresh/',
+    path('accounts/token/refresh/',
          TokenRefreshView.as_view(), name='token-refresh'),
-    path('account/', include(router.urls)),
+    path('accounts/', include(router.urls)),
 ]

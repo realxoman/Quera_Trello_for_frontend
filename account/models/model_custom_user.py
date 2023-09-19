@@ -6,7 +6,8 @@ from django.core.validators import RegexValidator
 
 
 class CustomUser(AbstractUser):
-    email = models.EmailField(unique=True, verbose_name="ایمیل", blank=True, null=True)
+    email = models.EmailField(
+        unique=True, verbose_name="ایمیل", blank=True, null=True)
     thumbnail = models.ImageField(
         blank=True, null=True,
         upload_to='profile_pics', verbose_name="تصویر پروفایل")
