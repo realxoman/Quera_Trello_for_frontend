@@ -9,6 +9,7 @@ from workspace.api.serializers import BoardSerializer
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
 
     def get_queryset(self):
         return Board.objects.filter(

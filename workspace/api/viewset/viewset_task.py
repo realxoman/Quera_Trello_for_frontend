@@ -9,6 +9,7 @@ from workspace.api.serializers import TaskSerializer
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
+    lookup_field = 'id'
 
     def get_queryset(self):
         return Task.objects.filter(

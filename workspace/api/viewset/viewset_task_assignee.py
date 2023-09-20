@@ -7,6 +7,7 @@ from workspace.api.serializers import TaskAssigneeSerializer
 class TaskAssigneeViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TaskAssigneeSerializer
+    lookup_field = 'id'
 
     def get_queryset(self):
         return TaskAssignee.objects.filter(

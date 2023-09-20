@@ -7,6 +7,7 @@ from workspace.api.serializers import ProjectMemberSerializer
 class ProjectMemberViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = ProjectMemberSerializer
+    lookup_field = 'id'
 
     def get_queryset(self):
         return ProjectMember.objects.filter(

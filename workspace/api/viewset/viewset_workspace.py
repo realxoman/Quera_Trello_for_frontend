@@ -9,6 +9,7 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Workspace.objects.all()
     serializer_class = WorkspaceSerializer
+    lookup_field = 'id'
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)

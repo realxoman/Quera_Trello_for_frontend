@@ -10,11 +10,11 @@ from workspace.api.viewset import (
 
 app_name = 'workspace_router'
 router = routers.DefaultRouter()
-router.register('workspaces', WorkspaceViewSet, basename='workspace')
+router.register('', WorkspaceViewSet, basename='workspace')
 
 # Workspaces endpoints
 workspaces_routers = routers.NestedDefaultRouter(
-    router, 'workspaces', lookup='workspace')
+    router, '', lookup='workspace')
 workspaces_routers.register(
     'members', WorkspaceMemberViewSet, basename='workspace-members')
 workspaces_routers.register('projects', ProjectsViewSet, basename='projects')
