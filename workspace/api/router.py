@@ -4,7 +4,7 @@ from django.urls import path, include
 from workspace.api.viewset import (
     WorkspaceViewSet, WorkspaceMemberViewSet, ProjectsViewSet,
     ProjectMemberViewSet, BoardViewSet, TaskViewSet,
-    TaskCommentViewSet, TaskAssigneeViewSet
+    TaskCommentViewSet, TaskAssigneeViewSet, TaskLogViewSet
 )
 
 
@@ -38,6 +38,8 @@ tasks_routers.register(
     'assignee', TaskAssigneeViewSet, basename='task-assignee')
 tasks_routers.register(
     'comments', TaskCommentViewSet, basename='task-comments')
+tasks_routers.register(
+    'logs', TaskLogViewSet, basename='task-logs')
 
 urlpatterns = [
     path(r'', include(router.urls)),

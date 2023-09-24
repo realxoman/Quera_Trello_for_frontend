@@ -11,7 +11,7 @@ class ProjectMemberViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return ProjectMember.objects.filter(
-            project_id=self.kwargs['project_pk'])
+            project_id=self.kwargs['project_id'])
 
     def get_serializer_context(self):
-        return {'project_id': self.kwargs['project_pk']}
+        return {'project_id': self.kwargs['project_id']}

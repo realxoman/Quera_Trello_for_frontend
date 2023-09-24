@@ -10,7 +10,7 @@ class ProjectsViewSet(viewsets.ModelViewSet):
     lookup_field = 'id'
 
     def get_queryset(self):
-        return Project.objects.filter(workspace_id=self.kwargs['workspace_pk'])
+        return Project.objects.filter(workspace_id=self.kwargs['workspace_id'])
 
     def get_serializer_context(self):
-        return {'workspace_id': self.kwargs['workspace_pk']}
+        return {'workspace_id': self.kwargs['workspace_id']}

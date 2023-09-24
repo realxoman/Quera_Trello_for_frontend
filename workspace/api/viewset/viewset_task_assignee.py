@@ -11,7 +11,7 @@ class TaskAssigneeViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return TaskAssignee.objects.filter(
-            task_id=self.kwargs['task_pk'])
+            task_id=self.kwargs['task_id'])
 
     def get_serializer_context(self):
-        return {'task_id': self.kwargs['task_pk']}
+        return {'task_id': self.kwargs['task_id']}

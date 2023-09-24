@@ -6,3 +6,4 @@ from .model_task_assignee import TaskAssignee
 from .model_task_comment import TaskComment
 from .model_workspace import Workspace
 from .model_workspace_member import WorkspaceMember
+from .model_task_logs import TaskLog

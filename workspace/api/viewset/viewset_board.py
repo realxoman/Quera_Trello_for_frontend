@@ -13,10 +13,10 @@ class BoardViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Board.objects.filter(
-            project_id=self.kwargs['project_pk']).order_by('order')
+            project_id=self.kwargs['project_id']).order_by('order')
 
     def get_serializer_context(self):
-        return {'project_id': self.kwargs['project_pk']}
+        return {'project_id': self.kwargs['project_id']}
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
