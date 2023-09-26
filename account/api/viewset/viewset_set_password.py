@@ -3,7 +3,10 @@ from rest_framework import generics, status
 
 from account.api.serializers import SetPasswordSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Account Forget Password"])
 class SetPasswordViewSet(generics.GenericAPIView):
     serializer_class = SetPasswordSerializer
 

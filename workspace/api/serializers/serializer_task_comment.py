@@ -15,7 +15,7 @@ class TaskCommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskComment
-        fields = ['id', 'author', 'text']
+        fields = ['id', 'author', 'attachment', 'text']
 
     def create(self, validated_data):
         task_id = self.context['task_id']

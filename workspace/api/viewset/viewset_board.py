@@ -5,7 +5,10 @@ from workspace.models import Board
 from django.db import models
 from workspace.api.serializers import BoardSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Boards"])
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
     permission_classes = [IsAuthenticated]

@@ -9,6 +9,7 @@ class Board(DateBasic):
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE, related_name='boards')
     name = models.CharField(_('نام'), max_length=200)
+    is_archive = models.BooleanField(default=False, verbose_name='آیا بورد آرشیو شده است؟')
     order = models.BigIntegerField(_("ترتیب"), default=0)
 
     class Meta:

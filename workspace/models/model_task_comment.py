@@ -2,6 +2,8 @@ from django.db import models
 from utils.models import DateBasic
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+from utils.validators import validate_file_size
+
 
 from .model_task import Task
 
@@ -13,6 +15,10 @@ class TaskComment(DateBasic):
     author = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, null=True, blank=True)
     text = models.TextField(_("متن"), max_length=500, blank=True)
+    attachment = models.FileField(
+        blank=True, null=True,
+        upload_to='attachments', verbose_name="فایل ضمیمه",
+        validators=[validate_file_size])
 
     class Meta:
         verbose_name = _('Task Comment')

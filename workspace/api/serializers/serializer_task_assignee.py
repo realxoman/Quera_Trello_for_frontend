@@ -15,7 +15,7 @@ class TaskAssigneeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskAssignee
-        fields = ['id', 'user']
+        fields = ['user']
 
     def create(self, validated_data):
         task_id = self.context['task_id']

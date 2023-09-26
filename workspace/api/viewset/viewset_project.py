@@ -3,7 +3,10 @@ from rest_framework.permissions import IsAuthenticated
 from workspace.models import Project
 from workspace.api.serializers import ProjectSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Projects"])
 class ProjectsViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
     permission_classes = [IsAuthenticated]

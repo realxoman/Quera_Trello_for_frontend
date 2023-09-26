@@ -3,7 +3,10 @@ from rest_framework.permissions import IsAuthenticated
 from workspace.models import TaskComment
 from workspace.api.serializers import TaskCommentSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Task Comment"])
 class TaskCommentViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TaskCommentSerializer

@@ -4,3 +4,4 @@ from .viewset_reset_password import ResetPasswordViewSet
 from .viewset_reset_password_token import ResetPasswordTokenViewSet
 from .viewset_set_password import SetPasswordViewSet
 from .viewset_custom_token import CustomTokenObtainPairViewSet
+from .viewset_refresh_token import CustomTokenRefreshView

@@ -8,7 +8,10 @@ from account.api.serializers import ChangePasswordSerializer
 
 User = get_user_model()
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Account Change Password"])
 class ChangePasswordViewSet(GenericViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = ChangePasswordSerializer

@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from account.managers import CustomUserManager
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from utils.validators import validate_file_size
 
 
 class CustomUser(AbstractUser):
@@ -10,7 +11,8 @@ class CustomUser(AbstractUser):
         unique=True, verbose_name="ایمیل", blank=True, null=True)
     thumbnail = models.ImageField(
         blank=True, null=True,
-        upload_to='profile_pics', verbose_name="تصویر پروفایل")
+        upload_to='profile_pics', verbose_name="تصویر پروفایل",
+        validators=[validate_file_size])
     phone_number_validator = RegexValidator(
         regex=r'^\+?1?\d{9,15}$', message="The phone number is invalid.")
     phone_number = models.CharField(validators=[phone_number_validator],

@@ -4,7 +4,10 @@ from rest_framework.permissions import IsAuthenticated
 from workspace.models import TaskLog
 from workspace.api.serializers import TaskLogSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Task Logs"])
 class TaskLogViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = TaskLogSerializer

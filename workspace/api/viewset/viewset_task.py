@@ -5,7 +5,10 @@ from workspace.models import Task, TaskLog
 from django.db import models
 from workspace.api.serializers import TaskSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Tasks"])
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]

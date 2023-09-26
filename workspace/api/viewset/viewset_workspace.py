@@ -4,7 +4,10 @@ from rest_framework.permissions import IsAuthenticated
 from workspace.models import Workspace
 from workspace.api.serializers import WorkspaceSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Workspaces"])
 class WorkspaceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     queryset = Workspace.objects.all()
