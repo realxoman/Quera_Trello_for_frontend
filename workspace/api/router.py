@@ -48,5 +48,5 @@ urlpatterns = [
     path(r'', include(projects_routers.urls)),
     path(r'', include(boards_routers.urls)),
     path(r'', include(tasks_routers.urls)),
-    path('subescriptions', SubscriptionViewSet.as_view(), name="subscription")
+    path('subscriptions', SubscriptionViewSet.as_view(), name="subscription")
 ]
