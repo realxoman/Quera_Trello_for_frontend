@@ -1,9 +1,13 @@
 from rest_framework import serializers
 
+from account.permissions import ProjectMemberPermission
+from utils.enums import PermissionEnum
+
 from workspace.models import WorkspaceMember
 
 
 class WorkspaceMemberSerializer(serializers.ModelSerializer):
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

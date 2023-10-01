@@ -3,16 +3,14 @@ from django.contrib.auth import get_user_model
 from utils.models import DateBasic
 from django.utils.translation import gettext_lazy as _
 
-from .model_workspace import Workspace
-
 
 class WorkspaceMember(DateBasic):
 
     workspace = models.ForeignKey(
-        Workspace, on_delete=models.CASCADE, related_name='workspace_members')
+        'workspace.Workspace', on_delete=models.CASCADE, related_name='workspace_members')
     user = models.ForeignKey(
         get_user_model(), on_delete=models.CASCADE, verbose_name=_('کاربر'),)
-    role = models.CharField(_('نقش‌کاربری'), max_length=350)
+    is_super_access = models.BooleanField(_('آیا مدیر کل است؟'), default=False)
 
     class Meta:
         verbose_name = _('Workspace Member')
