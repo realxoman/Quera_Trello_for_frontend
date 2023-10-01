@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from workspace.models import Task, TaskLog
 from django.db import models
 from workspace.api.serializers import TaskSerializer
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 from drf_spectacular.utils import extend_schema
 
@@ -11,7 +13,8 @@ from drf_spectacular.utils import extend_schema
 @extend_schema(tags=["Tasks"])
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.VIEWER
     lookup_field = 'id'
 
     def get_queryset(self):

@@ -6,12 +6,14 @@ from django.db import models
 from workspace.api.serializers import BoardSerializer
 
 from drf_spectacular.utils import extend_schema
-
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 @extend_schema(tags=["Boards"])
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.VIEWER
     lookup_field = 'id'
 
     def get_queryset(self):

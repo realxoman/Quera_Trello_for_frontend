@@ -6,11 +6,13 @@ from workspace.models import TaskComment
 from workspace.api.serializers import TaskCommentSerializer
 
 from drf_spectacular.utils import extend_schema
-
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 @extend_schema(tags=["Task Comment"])
 class TaskCommentViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.COMMENTOR
     serializer_class = TaskCommentSerializer
     lookup_field = 'id'
 

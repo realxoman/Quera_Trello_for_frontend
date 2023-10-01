@@ -4,13 +4,16 @@ from rest_framework.response import Response
 
 from workspace.models import TaskAssignee
 from workspace.api.serializers import TaskAssigneeSerializer
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 from drf_spectacular.utils import extend_schema
 
 
 @extend_schema(tags=["Task Members"])
 class TaskAssigneeViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.VIEWER
     serializer_class = TaskAssigneeSerializer
     lookup_field = 'id'
 

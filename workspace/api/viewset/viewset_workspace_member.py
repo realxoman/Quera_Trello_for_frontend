@@ -5,11 +5,13 @@ from workspace.models import WorkspaceMember
 from workspace.api.serializers import WorkspaceMemberSerializer
 
 from drf_spectacular.utils import extend_schema
-
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 @extend_schema(tags=["Workspace Members"])
 class WorkspaceMemberViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.FULL
     serializer_class = WorkspaceMemberSerializer
     lookup_field = 'id'
 

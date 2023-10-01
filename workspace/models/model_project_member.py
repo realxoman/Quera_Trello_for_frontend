@@ -10,7 +10,7 @@ class ProjectMember(DateBasic):
     project = models.ForeignKey(
         'workspace.Project', on_delete=models.CASCADE, related_name='project_members')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    role = models.IntegerField(_('نقش‌کاربری'), max_length=350, choices=PermissionEnum.choices, default=PermissionEnum.VIEWER)
+    role = models.IntegerField(_('نقش‌کاربری'), choices=PermissionEnum.choices, default=PermissionEnum.VIEWER)
 
 
     class Meta:

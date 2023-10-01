@@ -6,11 +6,13 @@ from workspace.models import TaskLog
 from workspace.api.serializers import TaskLogSerializer
 
 from drf_spectacular.utils import extend_schema
-
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 @extend_schema(tags=["Task Logs"])
 class TaskLogViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.VIEWER
     serializer_class = TaskLogSerializer
     lookup_field = 'id'
     http_method_names = ['get']

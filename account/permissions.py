@@ -5,7 +5,7 @@ class ProjectMemberPermission(permissions.BasePermission):
         # Check the user's permission based on the role field in ProjectMember
         user = request.user
         
-        if not user.is_authenticated():
+        if not user.is_authenticated:
             return False
 
         if user.is_superuser:
@@ -14,16 +14,14 @@ class ProjectMemberPermission(permissions.BasePermission):
         if view.action in 'create':
             return True
 
-        project_member = user.project_members_set.filter(project=view.kwargs.get('project_pk')).first()
+        project_member = user.projectmember_set.filter(project=view.kwargs.get('project_id')).first()
 
-        workspace_member = user.workspace_members_set.filter(project=view.kwargs.get('project_pk')).first()
+        workspace_member = user.workspacemember_set.filter(workspace=view.kwargs.get('workspace_id')).first()
 
-        if workspace_member.is_super_access:
+        if workspace_member and workspace_member.is_super_access:
             return True
 
-        user_role = project_member.role
-
-        if user_role >= view.required_permission:
+        if project_member and project_member.role >= view.required_permission:
             return True
 
         return False
