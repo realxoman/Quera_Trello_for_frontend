@@ -4,7 +4,8 @@ from django.urls import path, include
 from workspace.api.viewset import (
     WorkspaceViewSet, WorkspaceMemberViewSet, ProjectsViewSet,
     ProjectMemberViewSet, BoardViewSet, TaskViewSet,
-    TaskCommentViewSet, TaskAssigneeViewSet, TaskLogViewSet
+    TaskCommentViewSet, TaskAssigneeViewSet, TaskLogViewSet,
+    SubscriptionViewSet
 )
 
 
@@ -47,4 +48,5 @@ urlpatterns = [
     path(r'', include(projects_routers.urls)),
     path(r'', include(boards_routers.urls)),
     path(r'', include(tasks_routers.urls)),
+    path('subescriptions', SubscriptionViewSet.as_view(), name="subscription")
 ]

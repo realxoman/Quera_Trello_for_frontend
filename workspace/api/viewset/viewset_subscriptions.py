@@ -13,4 +13,4 @@ class SubscriptionViewSet(generics.GenericAPIView):
         serializer.is_valid(raise_exception=True)
 
         return Response(
-            {"detail": "Token is valid"}, status=status.HTTP_200_OK)
+            {"detail": "ایمیل ارسال شد"}, status=status.HTTP_200_OK)

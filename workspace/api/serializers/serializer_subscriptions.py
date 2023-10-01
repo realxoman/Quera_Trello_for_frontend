@@ -16,11 +16,8 @@ class SubscriptionSerializer(serializers.Serializer):
                 `{field.label}` الزامی است.'
 
     email = serializers.CharField(max_length=500)
-    project_id = serializers.IntegerField()
-    workspace_id = serializers.IntegerField()
-    is_super_access = serializers.BooleanField(default=False)
-    role_id = serializers.IntegerField(default=1)
+    url = serializers.CharField(max_length=300)
 
     class Meta:
         model = CustomUser
-        fields = ['url', 'email', 'project_id', 'workspace_id']
+        fields = ['url', 'email']
