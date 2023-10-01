@@ -20,6 +20,11 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         return {'board_id': self.kwargs['board_id']}
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()

@@ -1,5 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 from workspace.models import Workspace
 from workspace.api.serializers import WorkspaceSerializer
@@ -17,3 +18,8 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)

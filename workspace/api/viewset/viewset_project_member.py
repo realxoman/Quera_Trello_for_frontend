@@ -1,5 +1,7 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 from workspace.models import ProjectMember
 from workspace.api.serializers import ProjectMemberSerializer
 from drf_spectacular.utils import extend_schema
@@ -17,3 +19,8 @@ class ProjectMemberViewSet(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         return {'project_id': self.kwargs['project_id']}
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)

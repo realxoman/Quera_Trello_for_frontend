@@ -1,5 +1,6 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from django.contrib.auth import get_user_model
+from rest_framework.response import Response
 from account.api.serializers import UserRegisterSerializer, UserSerializer
 
 from drf_spectacular.utils import extend_schema
@@ -25,4 +26,6 @@ class UserRegisterViewSet(viewsets.ModelViewSet):
 
     @extend_schema(tags=["Account Delete"])
     def destroy(self, request, *args, **kwargs):
-        return super().destroy(request, *args, **kwargs)
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)
