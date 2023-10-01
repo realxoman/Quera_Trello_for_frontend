@@ -12,7 +12,7 @@ class CustomUser(AbstractUser):
     thumbnail = models.ImageField(
         blank=True, null=True,
         upload_to='profile_pics', verbose_name="تصویر پروفایل",
-        validators=[validate_file_size])
+        validators=[validate_file_size], default=None)
     phone_number_validator = RegexValidator(
         regex=r'^\+?1?\d{9,15}$', message="The phone number is invalid.")
     phone_number = models.CharField(validators=[phone_number_validator],

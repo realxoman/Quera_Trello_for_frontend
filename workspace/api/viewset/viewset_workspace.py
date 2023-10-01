@@ -13,6 +13,7 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
     queryset = Workspace.objects.all()
     serializer_class = WorkspaceSerializer
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete', 'patch']
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)
