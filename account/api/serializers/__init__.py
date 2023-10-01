@@ -4,3 +4,4 @@ from .serializer_reset_password import ResetPasswordSerializer
 from .serializer_reset_password_token import ResetPasswordTokenSerializer
 from .serializer_set_password import SetPasswordSerializer
 from .serializer_custom_token import CustomTokenObtainPairSerializer
+from .serializer_user import UserSerializer

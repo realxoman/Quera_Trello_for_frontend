@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from settings.models import Settings
 
 
-class UserRegisterSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -18,7 +18,8 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'password',]
+        fields = ['id', 'username', 'email', 'password',
+                  'first_name', 'last_name', 'phone_number', 'thumbnail']
 
     def validate(self, value):
         if get_user_model().objects.filter(username=value).exists():
