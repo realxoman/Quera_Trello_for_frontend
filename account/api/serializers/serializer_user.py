@@ -27,7 +27,7 @@ class UserSerializer(serializers.ModelSerializer):
                 _("The user exists with this username."))
         elif get_user_model().objects.filter(email=value).exists():
             raise serializers.ValidationError(
-                _("The email already register."))
+                _("این ایمیل توسط کاربر دیگری درحال استفاده است."))
         return value
 
     def create(self, validated_data):

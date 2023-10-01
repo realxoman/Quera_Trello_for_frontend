@@ -22,6 +22,10 @@ class UserRegisterViewSet(viewsets.ModelViewSet):
 
     @extend_schema(tags=["Account Update"])
     def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        new_email = request.data.get('email')
+        if new_email and get_user_model().objects.filter(email=new_email).exclude(pk=instance.pk).exists():
+            return Response({"email": ["این ایمیل توسط کاربر دیگری در حال استفاده است."]}, status=status.HTTP_400_BAD_REQUEST)
         return super().partial_update(request, *args, **kwargs)
 
     @extend_schema(tags=["Account Delete"])
