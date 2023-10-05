@@ -14,6 +14,7 @@ class ProjectMemberViewSet(viewsets.ModelViewSet):
     required_permission = PermissionEnum.FULL
     serializer_class = ProjectMemberSerializer
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
         return ProjectMember.objects.filter(

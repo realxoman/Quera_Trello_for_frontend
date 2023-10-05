@@ -15,6 +15,7 @@ class BoardViewSet(viewsets.ModelViewSet):
     permission_classes = [ProjectMemberPermission]
     required_permission = PermissionEnum.VIEWER
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
         return Board.objects.filter(

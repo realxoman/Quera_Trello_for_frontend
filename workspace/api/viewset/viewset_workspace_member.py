@@ -14,6 +14,7 @@ class WorkspaceMemberViewSet(viewsets.ModelViewSet):
     required_permission = PermissionEnum.FULL
     serializer_class = WorkspaceMemberSerializer
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
         return WorkspaceMember.objects.filter(

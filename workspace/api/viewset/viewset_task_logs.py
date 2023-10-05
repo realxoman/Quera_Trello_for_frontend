@@ -9,6 +9,7 @@ from drf_spectacular.utils import extend_schema
 from utils.enums import PermissionEnum
 from account.permissions import ProjectMemberPermission
 
+
 @extend_schema(tags=["Task Logs"])
 class TaskLogViewSet(viewsets.ModelViewSet):
     permission_classes = [ProjectMemberPermission]

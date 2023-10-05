@@ -16,6 +16,7 @@ class TaskAssigneeViewSet(viewsets.ModelViewSet):
     required_permission = PermissionEnum.VIEWER
     serializer_class = TaskAssigneeSerializer
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
         return TaskAssignee.objects.filter(

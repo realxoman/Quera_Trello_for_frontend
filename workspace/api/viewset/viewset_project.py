@@ -16,6 +16,7 @@ class ProjectsViewSet(viewsets.ModelViewSet):
     permission_classes = [ProjectMemberPermission]
     required_permission = PermissionEnum.VIEWER
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
         return Project.objects.filter(workspace_id=self.kwargs['workspace_id'])

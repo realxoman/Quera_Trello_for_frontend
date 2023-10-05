@@ -15,6 +15,7 @@ class TaskCommentViewSet(viewsets.ModelViewSet):
     required_permission = PermissionEnum.COMMENTOR
     serializer_class = TaskCommentSerializer
     lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete']
 
     def get_queryset(self):
         return TaskComment.objects.filter(
