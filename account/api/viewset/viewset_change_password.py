@@ -28,12 +28,12 @@ class ChangePasswordViewSet(GenericViewSet):
             if not self.object.check_password(
                     serializer.data.get("old_password")):
                 return Response(
-                    {"old_password": ["Wrong password."]},
+                    {"detail": ["رمز عبور قبلی اشتباه است"]},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             self.object.set_password(serializer.data.get("new_password"))
             self.object.save()
-            return Response("password updated successfully",
+            return Response({"detail": ["رمز عبور با موفقیت تغییر کرد."]},
                             status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
