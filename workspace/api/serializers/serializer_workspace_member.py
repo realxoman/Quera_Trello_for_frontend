@@ -19,7 +19,7 @@ class WorkspaceMemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WorkspaceMember
-        fields = ['id', 'user', 'role']
+        fields = ['user', 'is_super_access']
 
     def create(self, validated_data):
         workspace_id = self.context['workspace_id']
