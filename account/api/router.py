@@ -19,8 +19,8 @@ urlpatterns = [
         {'put': 'change_password'}), name='change-password'),
     path("reset-password/", ResetPasswordViewSet.as_view(),
          name="reset-password-request"),
-    path("reset-password/validate-token/",
-         ResetPasswordTokenViewSet.as_view(), name="reset-password-validate"),
+    # path("reset-password/validate-token/",
+    #      ResetPasswordTokenViewSet.as_view(), name="reset-password-validate"),
     path("reset-password/set-password/",
          SetPasswordViewSet.as_view(), name="reset-password-confirm"),
 ]

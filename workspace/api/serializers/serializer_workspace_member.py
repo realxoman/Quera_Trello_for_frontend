@@ -4,10 +4,12 @@ from account.permissions import ProjectMemberPermission
 from utils.enums import PermissionEnum
 
 from workspace.models import WorkspaceMember
+from account.api.serializers import UserSerializer
+
 
 
 class WorkspaceMemberSerializer(serializers.ModelSerializer):
-
+    user = UserSerializer()
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
