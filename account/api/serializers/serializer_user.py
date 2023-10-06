@@ -22,7 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     def validate(self, value):
         if get_user_model().objects.filter(username=value).exists():
             raise serializers.ValidationError(
-                _("The user exists with this username."))
+                _("کاربر با این یوزر نیم وجود دارد."))
         elif get_user_model().objects.filter(email=value).exists():
             raise serializers.ValidationError(
                 _("این ایمیل توسط کاربر دیگری درحال استفاده است."))
