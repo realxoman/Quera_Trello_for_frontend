@@ -14,11 +14,9 @@ class UserSerializer(serializers.ModelSerializer):
                 field.error_messages['required'] = f'فیلد \
                 `{field.label}` الزامی است.'
 
-    password = serializers.CharField(max_length=255, write_only=True)
-
     class Meta:
         model = get_user_model()
-        fields = ['id', 'username', 'email', 'password',
+        fields = ['id', 'username', 'email',
                   'first_name', 'last_name', 'phone_number', 'thumbnail']
 
     def validate(self, value):
