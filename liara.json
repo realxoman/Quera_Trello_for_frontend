@@ -2,7 +2,7 @@
     "disk": [
         {
             "name": "storagebox",
-            "mountTo": "media"
+            "mountTo": "/usr/src/app/media"
         }
     ]
 }
