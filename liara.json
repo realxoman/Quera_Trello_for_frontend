@@ -1,8 +1,8 @@
 {
-    "disk": [
+    "disks": [
         {
-            "name": "storagebox",
-            "mountTo": "/usr/src/app/media"
+            "name": "data",
+            "mountTo": "media"
         }
     ]
 }
