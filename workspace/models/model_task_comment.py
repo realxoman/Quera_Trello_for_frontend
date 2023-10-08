@@ -17,8 +17,7 @@ class TaskComment(DateBasic):
     text = models.TextField(_("متن"), max_length=500, blank=True)
     attachment = models.FileField(
         blank=True, null=True,
-        upload_to='attachments', verbose_name="فایل ضمیمه",
-        validators=[validate_file_size])
+        upload_to='attachments', verbose_name="فایل ضمیمه")
 
     class Meta:
         verbose_name = _('Task Comment')

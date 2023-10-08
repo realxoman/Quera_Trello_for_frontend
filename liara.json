@@ -1,0 +1,8 @@
+{
+    "disk": [
+        {
+            "name": "storagebox",
+            "mountTo": "media"
+        }
+    ]
+}

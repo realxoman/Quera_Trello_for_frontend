@@ -18,12 +18,10 @@ class Task(DateBasic):
     order = models.BigIntegerField(_("ترتیب"), default=0)
     thumbnail = models.ImageField(
         blank=True, null=True,
-        upload_to='profile_pics', verbose_name="تصویر پروفایل",
-        validators=[validate_file_size])
+        upload_to='profile_pics', verbose_name="تصویر پروفایل")
     attachment = models.FileField(
         blank=True, null=True,
-        upload_to='attachments', verbose_name="فایل ضمیمه",
-        validators=[validate_file_size]
+        upload_to='attachments', verbose_name="فایل ضمیمه"
         )
 
     class Meta:
