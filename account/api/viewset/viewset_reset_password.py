@@ -32,5 +32,5 @@ class ResetPasswordViewSet(generics.GenericAPIView):
 
         Util.send_email(data)
         return Response({'success':
-                        'We have sent you a link to reset your password'},
+                        "ایمیل بازیابی ارسال شد"},
                         status=status.HTTP_200_OK)
