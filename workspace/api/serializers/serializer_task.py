@@ -17,7 +17,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ['id', 'name', 'description', 'deadline', 'priority', 'attachment', 'thumbnail', 'order', 'members']
+        fields = ['id', 'name', 'description', 'deadline', 'priority', 'attachment', 'thumbnail', 'order', 'members', 'created_at']
 
     def create(self, validated_data):
         board_id = self.context['board_id']

@@ -19,7 +19,7 @@ class BoardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Board
-        fields = ['id', 'name', 'order', 'tasks', 'tasks_count', 'is_archive']
+        fields = ['id', 'name', 'order', 'tasks', 'tasks_count', 'is_archive', 'color']
 
     def get_tasks(self, obj):
         tasks = Task.objects.filter(board_id=obj.id)
