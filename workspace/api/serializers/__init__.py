@@ -7,4 +7,7 @@ from .serializer_task_comment import TaskCommentSerializer
 from .serializer_task import TaskSerializer
 from .serializer_task_assignee import TaskAssigneeSerializer
 from .serializer_task_log import TaskLogSerializer
-from .serializer_subscriptions import SubscriptionSerializer
+from .serializer_subscriptions import (
+    SubscriptionSerializer,
+    SubscriptionInvitationSerializer,
+)
