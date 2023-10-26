@@ -12,6 +12,7 @@ from workspace.api.viewset import (
     TaskAssigneeViewSet,
     TaskLogViewSet,
     SubscriptionViewSet,
+    SubscriptionCopyViewSet,
     SubscriptionInvitationViewSet,
 )
 
@@ -51,6 +52,11 @@ urlpatterns = [
     path(r"", include(boards_routers.urls)),
     path(r"", include(tasks_routers.urls)),
     path("subscriptions", SubscriptionViewSet.as_view(), name="subscription"),
+    path(
+        "subscriptions/copy",
+        SubscriptionCopyViewSet.as_view(),
+        name="subscription_copy",
+    ),
     path(
         "subscriptions/invitation",
         SubscriptionInvitationViewSet.as_view(),

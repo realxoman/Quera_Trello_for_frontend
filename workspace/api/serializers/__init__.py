@@ -10,4 +10,5 @@ from .serializer_task_log import TaskLogSerializer
 from .serializer_subscriptions import (
     SubscriptionSerializer,
     SubscriptionInvitationSerializer,
+    SubscriptionCopySerializer,
 )

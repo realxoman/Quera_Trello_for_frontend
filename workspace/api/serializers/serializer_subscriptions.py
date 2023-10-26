@@ -33,6 +33,30 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         return workspace_invitation
 
 
+class SubscriptionCopySerializer(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Customize the error message for required fields
+        for field_name, field in self.fields.items():
+            if field.required:
+                field.error_messages[
+                    "required"
+                ] = f"فیلد \
+                `{field.label}` الزامی است."
+
+    class Meta:
+        model = WorkspaceInvitation
+        fields = ["workspace"]
+
+    def create(self, validated_data):
+        token = uuid.uuid4().hex
+        workspace_invitation = WorkspaceInvitation.objects.create(
+            token=token, workspace=validated_data["workspace"]
+        )
+        return workspace_invitation
+
+
 class SubscriptionInvitationSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -7,4 +7,8 @@ from .viewset_task_comment import TaskCommentViewSet
 from .viewset_workspace import WorkspaceViewSet
 from .viewset_workspace_member import WorkspaceMemberViewSet
 from .viewset_task_logs import TaskLogViewSet
-from .viewset_subscriptions import SubscriptionViewSet, SubscriptionInvitationViewSet
+from .viewset_subscriptions import (
+    SubscriptionViewSet,
+    SubscriptionInvitationViewSet,
+    SubscriptionCopyViewSet,
+)

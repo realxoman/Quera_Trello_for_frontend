@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from workspace.api.serializers import (
     SubscriptionSerializer,
     SubscriptionInvitationSerializer,
+    SubscriptionCopySerializer,
 )
 from utils.send_email import Util
 import uuid
@@ -18,7 +19,7 @@ class SubscriptionViewSet(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         workspace_invitation = serializer.save()
-        url = f"https://domain.com/workspace/invitation/{workspace_invitation.token}"
+        url = f"http://localhost:3000/workspace/invitation/{workspace_invitation.token}"
         email_body = f"""
             سلام، شما برای عضویت در یک پروژه‌ی جدید دعوت شده‌اید.
             از طریق این لینک وارد شوید:
@@ -35,6 +36,21 @@ class SubscriptionViewSet(generics.GenericAPIView):
         Util.send_email(data)
 
         return Response({"detail": "ایمیل ارسال شد"}, status=status.HTTP_200_OK)
+
+
+@extend_schema(tags=["Subscription"])
+class SubscriptionCopyViewSet(generics.GenericAPIView):
+    serializer_class = SubscriptionCopySerializer
+
+    def post(self, request):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        workspace_invitation = serializer.save()
+        url = f"http://localhost:3000/workspace/invitation/{workspace_invitation.token}"
+
+        return Response(
+            {"detail": "لینک دعوت ساخته شده.", "url": url}, status=status.HTTP_200_OK
+        )
 
 
 @extend_schema(tags=["Subscription"])
