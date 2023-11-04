@@ -1,21 +1,35 @@
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from workspace.models import Task
+from workspace.models import Task, TaskLog
 from django.db import models
 from workspace.api.serializers import TaskSerializer
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
 
+from drf_spectacular.utils import extend_schema
+
+
+@extend_schema(tags=["Tasks"])
 class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.VIEWER
+    lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
         return Task.objects.filter(
-            board_id=self.kwargs['board_pk']).order_by('order')
+            board_id=self.kwargs['board_id']).order_by('order')
 
     def get_serializer_context(self):
-        return {'board_id': self.kwargs['board_pk']}
+        return {'board_id': self.kwargs['board_id']}
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -37,6 +51,10 @@ class TaskViewSet(viewsets.ModelViewSet):
             instance.order = new_order
             instance.save()
 
+        if 'priority' in data:
+            if instance.priority != data['priority']:
+                TaskLog(task=instance, old_priority=instance.priority,
+                        new_priority=data['priority']).save()
         serializer = self.get_serializer(instance, data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)

@@ -8,7 +8,10 @@ from account.api.serializers import ChangePasswordSerializer
 
 User = get_user_model()
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Account Change Password"])
 class ChangePasswordViewSet(GenericViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = ChangePasswordSerializer
@@ -25,12 +28,12 @@ class ChangePasswordViewSet(GenericViewSet):
             if not self.object.check_password(
                     serializer.data.get("old_password")):
                 return Response(
-                    {"old_password": ["Wrong password."]},
+                    {"detail": ["رمز عبور قبلی اشتباه است"]},
                     status=status.HTTP_400_BAD_REQUEST,
                 )
             self.object.set_password(serializer.data.get("new_password"))
             self.object.save()
-            return Response("password updated successfully",
+            return Response({"detail": ["رمز عبور با موفقیت تغییر کرد."]},
                             status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

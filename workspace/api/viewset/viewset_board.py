@@ -5,17 +5,24 @@ from workspace.models import Board
 from django.db import models
 from workspace.api.serializers import BoardSerializer
 
+from drf_spectacular.utils import extend_schema
+from utils.enums import PermissionEnum
+from account.permissions import ProjectMemberPermission
 
+@extend_schema(tags=["Boards"])
 class BoardViewSet(viewsets.ModelViewSet):
     serializer_class = BoardSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [ProjectMemberPermission]
+    required_permission = PermissionEnum.VIEWER
+    lookup_field = 'id'
+    http_method_names = ['get', 'post', 'delete', 'patch']
 
     def get_queryset(self):
         return Board.objects.filter(
-            project_id=self.kwargs['project_pk']).order_by('order')
+            project_id=self.kwargs['project_id']).order_by('order')
 
     def get_serializer_context(self):
-        return {'project_id': self.kwargs['project_pk']}
+        return {'project_id': self.kwargs['project_id']}
 
     def update(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -43,3 +50,8 @@ class BoardViewSet(viewsets.ModelViewSet):
         self.perform_update(serializer)
 
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)

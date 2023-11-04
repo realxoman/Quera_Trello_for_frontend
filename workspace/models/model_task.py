@@ -1,6 +1,7 @@
 from django.db import models
 from utils.models import DateBasic
 from django.utils.translation import gettext_lazy as _
+from utils.validators import validate_file_size
 
 from .model_board import Board
 
@@ -15,6 +16,13 @@ class Task(DateBasic):
     deadline = models.DateField(_("ددلاین"), auto_now_add=True)
     priority = models.BigIntegerField(_("اولویت"), default=0)
     order = models.BigIntegerField(_("ترتیب"), default=0)
+    thumbnail = models.ImageField(
+        blank=True, null=True,
+        upload_to='profile_pics', verbose_name="تصویر پروفایل")
+    attachment = models.FileField(
+        blank=True, null=True,
+        upload_to='attachments', verbose_name="فایل ضمیمه"
+        )
 
     class Meta:
         verbose_name = _('Task')

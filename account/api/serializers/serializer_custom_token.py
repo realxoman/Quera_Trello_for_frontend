@@ -1,7 +1,13 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework import serializers
+
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    default_error_messages = {
+        'no_active_account': 'نام کاربری یا رمز عبور اشتباه است.'
+    }
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -13,6 +19,12 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
     def validate(self, attrs):
         validated_data = super().validate(attrs)
+
+        # Check if authentication succeeded
+        if not self.user:
+            # Authentication failed, raise a custom error message
+            raise serializers.ValidationError('نام کاربری یا رمز عبور اشتباه است')
+        
         validated_data['user_id'] = self.user.id
         validated_data['username'] = self.user.username
         validated_data['email'] = self.user.email

@@ -9,11 +9,13 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ('username', 'email')
 
     fieldsets = (
-        ('Personal', {'fields': ('username', 'email', 'password')}),
+        ('Personal', {'fields': ('username', 'email', 'password',
+         'phone_number', 'first_name', 'last_name', 'thumbnail')}),
         ('Permissions', {'fields': ('is_staff', 'is_superuser')}),
     )
 
     add_fieldsets = (
-        ('Personal', {'fields': ('username', 'email', 'password')}),
+        ('Personal', {'fields': ('username', 'email', 'password',
+         'phone_number', 'first_name', 'last_name', 'thumbnail')}),
         ('Permissions', {'fields': ('is_staff', 'is_superuser')}),
     )

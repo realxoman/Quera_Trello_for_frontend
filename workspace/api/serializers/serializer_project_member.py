@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
 from workspace.models import ProjectMember
+from account.api.serializers import UserSerializer
 
 
 class ProjectMemberSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

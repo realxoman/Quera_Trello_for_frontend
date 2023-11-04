@@ -1,9 +1,11 @@
 from rest_framework import serializers
 
 from workspace.models import TaskAssignee
+from account.api.serializers import UserSerializer
 
 
 class TaskAssigneeSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -15,7 +17,7 @@ class TaskAssigneeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TaskAssignee
-        fields = ['id', 'user']
+        fields = ['user']
 
     def create(self, validated_data):
         task_id = self.context['task_id']

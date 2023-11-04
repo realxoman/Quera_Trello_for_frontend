@@ -7,7 +7,10 @@ from utils.send_email import (
 )
 from account.api.serializers import ResetPasswordSerializer
 
+from drf_spectacular.utils import extend_schema
 
+
+@extend_schema(tags=["Account Forget Password"])
 class ResetPasswordViewSet(generics.GenericAPIView):
     serializer_class = ResetPasswordSerializer
 
@@ -29,5 +32,5 @@ class ResetPasswordViewSet(generics.GenericAPIView):
 
         Util.send_email(data)
         return Response({'success':
-                        'We have sent you a link to reset your password'},
+                        "ایمیل بازیابی ارسال شد"},
                         status=status.HTTP_200_OK)

@@ -8,7 +8,7 @@ from .model_task import Task
 
 class TaskAssignee(DateBasic):
 
-    Task = models.ForeignKey(
+    task = models.ForeignKey(
         Task, on_delete=models.CASCADE, related_name='tasks_assignee')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
