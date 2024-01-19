@@ -15,7 +15,7 @@ class SubscriptionViewSet(generics.GenericAPIView):
     serializer_class = SubscriptionSerializer
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(data=request.data, context=self.get_serializer_context())
         serializer.is_valid(raise_exception=True)
         workspace_invitation = serializer.save()
         url = self.request.build_absolute_uri(
@@ -32,7 +32,7 @@ class SubscriptionCopyViewSet(generics.GenericAPIView):
     serializer_class = SubscriptionCopySerializer
 
     def post(self, request):
-        serializer = self.serializer_class(data=request.data)
+        serializer = self.serializer_class(data=request.data, context=self.get_serializer_context())
         serializer.is_valid(raise_exception=True)
         workspace_invitation = serializer.save()
         url = self.request.build_absolute_uri(

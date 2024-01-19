@@ -2,11 +2,18 @@ import uuid
 from rest_framework import serializers
 from workspace.models.model_workspace_invitation import WorkspaceInvitation
 from django.shortcuts import get_object_or_404
-from workspace.models import WorkspaceMember
+from workspace.models import WorkspaceMember, Workspace
+
+
+class WorkSpaceForeignKey(serializers.PrimaryKeyRelatedField):
+    def get_queryset(self):
+        user = self.context["request"].user
+        return Workspace.objects.filter(workspace_members__user=user)
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
+    workspace = WorkSpaceForeignKey()
 
     class Meta:
         model = WorkspaceInvitation
@@ -21,6 +28,8 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
 
 class SubscriptionCopySerializer(serializers.ModelSerializer):
+    workspace = WorkSpaceForeignKey()
+
     class Meta:
         model = WorkspaceInvitation
         fields = ["workspace"]
