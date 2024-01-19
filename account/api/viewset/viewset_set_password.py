@@ -11,7 +11,8 @@ class SetPasswordViewSet(generics.GenericAPIView):
     serializer_class = SetPasswordSerializer
 
     def patch(self, request):
-        serializer = self.serializer_class(data=request.data)
+        token = self.request.query_params.get("token")
+        serializer = self.serializer_class(data=request.data, context={"token": token})
         serializer.is_valid(raise_exception=True)
         return Response(
             {"detail": "Password reset successfully"}, status=status.HTTP_200_OK
