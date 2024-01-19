@@ -1,25 +1,36 @@
 from rest_framework import serializers
 
+from account.models import CustomUser
 from workspace.models import TaskAssignee
 from account.api.serializers import UserSerializer
 
 
 class TaskAssigneeSerializer(serializers.ModelSerializer):
     user = UserSerializer()
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Customize the error message for required fields
-        for field_name, field in self.fields.items():
-            if field.required:
-                field.error_messages['required'] = f'فیلد \
-                `{field.label}` الزامی است.'
 
     class Meta:
         model = TaskAssignee
-        fields = ['user']
+        fields = ["id", "user"]
+
+
+class TaskAssigneeCreateSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+        slug_field="username", queryset=CustomUser.objects.all()
+    )
+
+    class Meta:
+        model = TaskAssignee
+        fields = ["user"]
+
+    def validate(self, attrs):
+        if TaskAssignee.objects.filter(
+            task_id=self.context["task_id"], user=attrs["user"]
+        ).exists():
+            raise serializers.ValidationError(
+                "این کاربر قبلا به این تسک اختصاص داده شده است"
+            )
+        return attrs
 
     def create(self, validated_data):
-        task_id = self.context['task_id']
-        return TaskAssignee.objects.create(
-            task_id=task_id, **validated_data)
+        task_id = self.context["task_id"]
+        return TaskAssignee.objects.create(task_id=task_id, **validated_data)

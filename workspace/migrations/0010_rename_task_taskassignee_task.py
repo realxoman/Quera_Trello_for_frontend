@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0009_board_is_archive_task_attachment_task_thumbnail_and_more'),
+        ("workspace", "0009_board_is_archive_task_attachment_task_thumbnail_and_more"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='taskassignee',
-            old_name='Task',
-            new_name='task',
+            model_name="taskassignee",
+            old_name="Task",
+            new_name="task",
         ),
     ]

@@ -4,24 +4,28 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0010_rename_task_taskassignee_task'),
+        ("workspace", "0010_rename_task_taskassignee_task"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='workspacemember',
-            name='role',
+            model_name="workspacemember",
+            name="role",
         ),
         migrations.AddField(
-            model_name='projectmember',
-            name='role',
-            field=models.CharField(choices=[(4, 'Full'), (3, 'Editor'), (2, 'Commentor'), (1, 'Viewer')], default=1, max_length=350, verbose_name='نقش\u200cکاربری'),
+            model_name="projectmember",
+            name="role",
+            field=models.CharField(
+                choices=[(4, "Full"), (3, "Editor"), (2, "Commentor"), (1, "Viewer")],
+                default=1,
+                max_length=350,
+                verbose_name="نقش\u200cکاربری",
+            ),
         ),
         migrations.AddField(
-            model_name='workspacemember',
-            name='is_super_access',
-            field=models.BooleanField(default=False, verbose_name='آیا مدیر کل است؟'),
+            model_name="workspacemember",
+            name="is_super_access",
+            field=models.BooleanField(default=False, verbose_name="آیا مدیر کل است؟"),
         ),
     ]

@@ -7,13 +7,13 @@ from .model_task import Task
 
 
 class TaskAssignee(DateBasic):
-
     task = models.ForeignKey(
-        Task, on_delete=models.CASCADE, related_name='tasks_assignee')
+        Task, on_delete=models.CASCADE, related_name="tasks_assignee"
+    )
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _('Task Assignee')
+        verbose_name = _("Task Assignee")
         verbose_name_plural = _("Tasks Assignee")
 
     def __str__(self):

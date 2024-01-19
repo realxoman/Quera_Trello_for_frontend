@@ -15,14 +15,14 @@ class ProjectsViewSet(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
     permission_classes = [ProjectMemberPermission]
     required_permission = PermissionEnum.VIEWER
-    lookup_field = 'id'
-    http_method_names = ['get', 'post', 'delete', 'patch']
+    lookup_field = "id"
+    http_method_names = ["get", "post", "delete", "patch"]
 
     def get_queryset(self):
-        return Project.objects.filter(workspace_id=self.kwargs['workspace_id'])
+        return Project.objects.filter(workspace_id=self.kwargs["workspace_id"])
 
     def get_serializer_context(self):
-        return {'workspace_id': self.kwargs['workspace_id']}
+        return {"workspace_id": self.kwargs["workspace_id"]}
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

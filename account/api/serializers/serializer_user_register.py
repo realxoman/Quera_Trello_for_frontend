@@ -11,22 +11,29 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         # Customize the error message for required fields
         for field_name, field in self.fields.items():
             if field.required:
-                field.error_messages['required'] = f'فیلد \
-                `{field.label}` الزامی است.'
+                field.error_messages[
+                    "required"
+                ] = f"فیلد \
+                `{field.label}` الزامی است."
 
     password = serializers.CharField(max_length=255, write_only=True)
 
     class Meta:
         model = get_user_model()
-        fields = ['id', 'username', 'email', 'password',]
+        fields = [
+            "id",
+            "username",
+            "email",
+            "password",
+        ]
 
     def validate(self, value):
         if get_user_model().objects.filter(username=value).exists():
-            raise serializers.ValidationError(
-                _("The user exists with this username."))
+            raise serializers.ValidationError(_("The user exists with this username."))
         elif get_user_model().objects.filter(email=value).exists():
             raise serializers.ValidationError(
-                _("این ایمیل توسط کاربر دیگری درحال استفاده است."))
+                _("این ایمیل توسط کاربر دیگری درحال استفاده است.")
+            )
         return value
 
     def create(self, validated_data):

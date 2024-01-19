@@ -1,24 +1,11 @@
-from rest_framework import serializers
 import uuid
+from rest_framework import serializers
 from workspace.models.model_workspace_invitation import WorkspaceInvitation
-from workspace.models.model_workspace import Workspace
 from django.shortcuts import get_object_or_404
-from django.contrib.auth import get_user_model
 from workspace.models import WorkspaceMember
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Customize the error message for required fields
-        for field_name, field in self.fields.items():
-            if field.required:
-                field.error_messages[
-                    "required"
-                ] = f"فیلد \
-                `{field.label}` الزامی است."
-
     email = serializers.EmailField(required=True)
 
     class Meta:
@@ -34,17 +21,6 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
 
 class SubscriptionCopySerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Customize the error message for required fields
-        for field_name, field in self.fields.items():
-            if field.required:
-                field.error_messages[
-                    "required"
-                ] = f"فیلد \
-                `{field.label}` الزامی است."
-
     class Meta:
         model = WorkspaceInvitation
         fields = ["workspace"]
@@ -58,17 +34,6 @@ class SubscriptionCopySerializer(serializers.ModelSerializer):
 
 
 class SubscriptionInvitationSerializer(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        # Customize the error message for required fields
-        for field_name, field in self.fields.items():
-            if field.required:
-                field.error_messages[
-                    "required"
-                ] = f"فیلد \
-                `{field.label}` الزامی است."
-
     class Meta:
         model = WorkspaceInvitation
         fields = ["token"]
@@ -84,11 +49,9 @@ class SubscriptionInvitationSerializer(serializers.ModelSerializer):
                 {"verification_code": ("این دعوت نامه منقضی شده.")}
             )
 
-        workspace_member = WorkspaceMember.objects.create(
+        WorkspaceMember.objects.get_or_create(
             workspace=workspace_invitation.workspace, user=user
         )
-
         workspace_invitation.expired = False
         workspace_invitation.save()
-
         return workspace_invitation

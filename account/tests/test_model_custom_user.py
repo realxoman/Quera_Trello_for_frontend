@@ -3,17 +3,12 @@ from account.models import CustomUser
 
 
 class CustomUserTest(TestCase):
-
     def setUp(self):
         # create a test user
-        self.username = CustomUser(
-            username='testuser',
-            is_superuser=0,
-            is_staff=1
-        )
+        self.username = CustomUser(username="testuser", is_superuser=0, is_staff=1)
 
     def test_model_user(self):
-        self.assertEqual(self.username.username, 'testuser')
+        self.assertEqual(self.username.username, "testuser")
 
     def test_model_is_superuser(self):
         self.assertEqual(self.username.is_superuser, 0)
@@ -22,4 +17,4 @@ class CustomUserTest(TestCase):
         self.assertEqual(self.username.is_staff, 1)
 
     def test_model_str(self):
-        self.assertEqual(str(self.username), 'testuser')
+        self.assertEqual(str(self.username), "testuser")

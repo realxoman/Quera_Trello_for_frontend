@@ -5,25 +5,45 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0007_alter_board_name_alter_board_order_and_more'),
+        ("workspace", "0007_alter_board_name_alter_board_order_and_more"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TaskLog',
+            name="TaskLog",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('old_priority', models.IntegerField(default=0, verbose_name='Old Priority')),
-                ('new_priority', models.IntegerField(default=0, verbose_name='New Priority')),
-                ('task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='workspace.task', verbose_name='Task')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "old_priority",
+                    models.IntegerField(default=0, verbose_name="Old Priority"),
+                ),
+                (
+                    "new_priority",
+                    models.IntegerField(default=0, verbose_name="New Priority"),
+                ),
+                (
+                    "task",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="workspace.task",
+                        verbose_name="Task",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Task Log',
-                'verbose_name_plural': 'Task Logs',
+                "verbose_name": "Task Log",
+                "verbose_name_plural": "Task Logs",
             },
         ),
     ]

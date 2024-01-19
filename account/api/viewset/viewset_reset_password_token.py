@@ -13,5 +13,4 @@ class ResetPasswordTokenViewSet(generics.GenericAPIView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        return Response(
-            {"detail": "Token is valid"}, status=status.HTTP_200_OK)
+        return Response({"detail": "Token is valid"}, status=status.HTTP_200_OK)

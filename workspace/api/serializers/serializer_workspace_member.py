@@ -1,29 +1,36 @@
 from rest_framework import serializers
 
-from account.permissions import ProjectMemberPermission
-from utils.enums import PermissionEnum
-
-from workspace.models import WorkspaceMember
 from account.api.serializers import UserSerializer
+from account.models import CustomUser
+from workspace.models import WorkspaceMember
 
 
 class WorkspaceMemberSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    class Meta:
+        model = WorkspaceMember
+        fields = ["id", "user", "is_super_access"]
 
-        # Customize the error message for required fields
-        for field_name, field in self.fields.items():
-            if field.required:
-                field.error_messages[
-                    "required"
-                ] = f"فیلد \
-                    `{field.label}` الزامی است."
+
+class WorkspaceMemberCreateSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+        queryset=CustomUser.objects.all(),
+        slug_field="username",
+    )
 
     class Meta:
         model = WorkspaceMember
-        fields = ["user", "is_super_access"]
+        fields = ["id", "user", "is_super_access"]
+
+    def validate(self, attrs):
+        if WorkspaceMember.objects.filter(
+            workspace_id=self.context["workspace_id"], user=attrs["user"]
+        ).exists():
+            raise serializers.ValidationError(
+                "این کاربر قبلا به این پروژه اضافه شده است"
+            )
+        return attrs
 
     def create(self, validated_data):
         workspace_id = self.context["workspace_id"]

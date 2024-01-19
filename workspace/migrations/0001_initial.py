@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,116 +14,271 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Board',
+            name="Board",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=200, verbose_name='name')),
-                ('order', models.BigIntegerField(default=0, verbose_name='order')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=200, verbose_name="name")),
+                ("order", models.BigIntegerField(default=0, verbose_name="order")),
             ],
             options={
-                'verbose_name': 'Board',
-                'verbose_name_plural': 'Boards',
+                "verbose_name": "Board",
+                "verbose_name_plural": "Boards",
             },
         ),
         migrations.CreateModel(
-            name='Project',
+            name="Project",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.BigIntegerField(default=0, verbose_name='name')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.BigIntegerField(default=0, verbose_name="name")),
             ],
             options={
-                'verbose_name': 'Project',
-                'verbose_name_plural': 'Projects',
+                "verbose_name": "Project",
+                "verbose_name_plural": "Projects",
             },
         ),
         migrations.CreateModel(
-            name='Task',
+            name="Task",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='name')),
-                ('description', models.TextField(blank=True, max_length=500, verbose_name='description')),
-                ('deadline', models.DateField(auto_now_add=True, verbose_name='deadline')),
-                ('priority', models.BigIntegerField(default=0, verbose_name='priority')),
-                ('order', models.BigIntegerField(default=0, verbose_name='order')),
-                ('board', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tasks', to='workspace.board')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="name")),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True, max_length=500, verbose_name="description"
+                    ),
+                ),
+                (
+                    "deadline",
+                    models.DateField(auto_now_add=True, verbose_name="deadline"),
+                ),
+                (
+                    "priority",
+                    models.BigIntegerField(default=0, verbose_name="priority"),
+                ),
+                ("order", models.BigIntegerField(default=0, verbose_name="order")),
+                (
+                    "board",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tasks",
+                        to="workspace.board",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Task',
-                'verbose_name_plural': 'Tasks',
+                "verbose_name": "Task",
+                "verbose_name_plural": "Tasks",
             },
         ),
         migrations.CreateModel(
-            name='Workspace',
+            name="Workspace",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='name')),
-                ('thumbnail', models.ImageField(blank=True, null=True, upload_to='', verbose_name='thumbnail')),
-                ('thumbnail_alt', models.CharField(blank=True, max_length=350, verbose_name='thumbnail alt')),
-                ('creator', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=255, verbose_name="name")),
+                (
+                    "thumbnail",
+                    models.ImageField(
+                        blank=True, null=True, upload_to="", verbose_name="thumbnail"
+                    ),
+                ),
+                (
+                    "thumbnail_alt",
+                    models.CharField(
+                        blank=True, max_length=350, verbose_name="thumbnail alt"
+                    ),
+                ),
+                (
+                    "creator",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Workspace',
-                'verbose_name_plural': 'Workspaces',
+                "verbose_name": "Workspace",
+                "verbose_name_plural": "Workspaces",
             },
         ),
         migrations.CreateModel(
-            name='WorkspaceMember',
+            name="WorkspaceMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('role', models.CharField(max_length=350, verbose_name='role')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('workspace', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='workspace_members', to='workspace.workspace')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("role", models.CharField(max_length=350, verbose_name="role")),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "workspace",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="workspace_members",
+                        to="workspace.workspace",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Workspace Member',
-                'verbose_name_plural': 'Workspace Members',
+                "verbose_name": "Workspace Member",
+                "verbose_name_plural": "Workspace Members",
             },
         ),
         migrations.CreateModel(
-            name='TaskComment',
+            name="TaskComment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('author', models.BigIntegerField(default=0, verbose_name='name')),
-                ('text', models.TextField(blank=True, max_length=500, verbose_name='text')),
-                ('task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='task_comments', to='workspace.task')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("author", models.BigIntegerField(default=0, verbose_name="name")),
+                (
+                    "text",
+                    models.TextField(blank=True, max_length=500, verbose_name="text"),
+                ),
+                (
+                    "task",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="task_comments",
+                        to="workspace.task",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Task Comment',
-                'verbose_name_plural': 'Task Comments',
+                "verbose_name": "Task Comment",
+                "verbose_name_plural": "Task Comments",
             },
         ),
         migrations.CreateModel(
-            name='TaskAssignee',
+            name="TaskAssignee",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('Task', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tasks_assingee', to='workspace.task')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "Task",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tasks_assingee",
+                        to="workspace.task",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Task Assignee',
-                'verbose_name_plural': 'Tasks Assignee',
+                "verbose_name": "Task Assignee",
+                "verbose_name_plural": "Tasks Assignee",
             },
         ),
         migrations.CreateModel(
-            name='ProjectMember',
+            name="ProjectMember",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('project', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='project_members', to='workspace.project')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "project",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="project_members",
+                        to="workspace.project",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Project Member',
-                'verbose_name_plural': 'Project Members',
+                "verbose_name": "Project Member",
+                "verbose_name_plural": "Project Members",
             },
         ),
         migrations.AddField(
-            model_name='project',
-            name='workspace',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='projects', to='workspace.workspace'),
+            model_name="project",
+            name="workspace",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="projects",
+                to="workspace.workspace",
+            ),
         ),
         migrations.AddField(
-            model_name='board',
-            name='project',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='boards', to='workspace.project'),
+            model_name="board",
+            name="project",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="boards",
+                to="workspace.project",
+            ),
         ),
     ]

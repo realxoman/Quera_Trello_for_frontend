@@ -14,12 +14,14 @@ class BoardSerializer(serializers.ModelSerializer):
         # Customize the error message for required fields
         for field_name, field in self.fields.items():
             if field.required:
-                field.error_messages['required'] = f'فیلد \
-                `{field.label}` الزامی است.'
+                field.error_messages[
+                    "required"
+                ] = f"فیلد \
+                `{field.label}` الزامی است."
 
     class Meta:
         model = Board
-        fields = ['id', 'name', 'order', 'tasks', 'tasks_count', 'is_archive', 'color']
+        fields = ["id", "name", "order", "tasks", "tasks_count", "is_archive", "color"]
 
     def get_tasks(self, obj):
         tasks = Task.objects.filter(board_id=obj.id)
@@ -30,6 +32,5 @@ class BoardSerializer(serializers.ModelSerializer):
         return task_count
 
     def create(self, validated_data):
-        project_id = self.context['project_id']
-        return Board.objects.create(
-            project_id=project_id, **validated_data)
+        project_id = self.context["project_id"]
+        return Board.objects.create(project_id=project_id, **validated_data)

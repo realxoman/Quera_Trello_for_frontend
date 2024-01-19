@@ -6,16 +6,20 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('workspace', '0005_remove_taskcomment_author_alter_project_name'),
+        ("workspace", "0005_remove_taskcomment_author_alter_project_name"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='taskcomment',
-            name='author',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name="taskcomment",
+            name="author",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

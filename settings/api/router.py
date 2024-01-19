@@ -7,15 +7,15 @@ class CustomRouter(DefaultRouter):
     def get_routes(self, viewset):
         routes = super().get_routes(viewset)
         # Remove the detail route (retrieve view)
-        return [route for route in routes
-                if not isinstance(route, Route) or
-                not route.name.endswith('-detail')]
+        return [
+            route
+            for route in routes
+            if not isinstance(route, Route) or not route.name.endswith("-detail")
+        ]
 
 
-app_name = 'setting_router'
+app_name = "setting_router"
 router = CustomRouter()
-router.register('', SettingViewSet, basename='settings')
+router.register("", SettingViewSet, basename="settings")
 
-urlpatterns = [
-    path('', include(router.urls))
-]
+urlpatterns = [path("", include(router.urls))]

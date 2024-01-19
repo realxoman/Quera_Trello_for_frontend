@@ -5,15 +5,21 @@ import utils.validators
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('account', '0004_alter_customuser_thumbnail'),
+        ("account", "0004_alter_customuser_thumbnail"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customuser',
-            name='thumbnail',
-            field=models.ImageField(blank=True, default=None, null=True, upload_to='profile_pics', validators=[utils.validators.validate_file_size], verbose_name='تصویر پروفایل'),
+            model_name="customuser",
+            name="thumbnail",
+            field=models.ImageField(
+                blank=True,
+                default=None,
+                null=True,
+                upload_to="profile_pics",
+                validators=[utils.validators.validate_file_size],
+                verbose_name="تصویر پروفایل",
+            ),
         ),
     ]

@@ -5,30 +5,49 @@ import utils.validators
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0008_tasklog'),
+        ("workspace", "0008_tasklog"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='board',
-            name='is_archive',
-            field=models.BooleanField(default=False, verbose_name='آیا بورد آرشیو شده است؟'),
+            model_name="board",
+            name="is_archive",
+            field=models.BooleanField(
+                default=False, verbose_name="آیا بورد آرشیو شده است؟"
+            ),
         ),
         migrations.AddField(
-            model_name='task',
-            name='attachment',
-            field=models.FileField(blank=True, null=True, upload_to='attachments', validators=[utils.validators.validate_file_size], verbose_name='فایل ضمیمه'),
+            model_name="task",
+            name="attachment",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="attachments",
+                validators=[utils.validators.validate_file_size],
+                verbose_name="فایل ضمیمه",
+            ),
         ),
         migrations.AddField(
-            model_name='task',
-            name='thumbnail',
-            field=models.ImageField(blank=True, null=True, upload_to='profile_pics', validators=[utils.validators.validate_file_size], verbose_name='تصویر پروفایل'),
+            model_name="task",
+            name="thumbnail",
+            field=models.ImageField(
+                blank=True,
+                null=True,
+                upload_to="profile_pics",
+                validators=[utils.validators.validate_file_size],
+                verbose_name="تصویر پروفایل",
+            ),
         ),
         migrations.AddField(
-            model_name='taskcomment',
-            name='attachment',
-            field=models.FileField(blank=True, null=True, upload_to='attachments', validators=[utils.validators.validate_file_size], verbose_name='فایل ضمیمه'),
+            model_name="taskcomment",
+            name="attachment",
+            field=models.FileField(
+                blank=True,
+                null=True,
+                upload_to="attachments",
+                validators=[utils.validators.validate_file_size],
+                verbose_name="فایل ضمیمه",
+            ),
         ),
     ]

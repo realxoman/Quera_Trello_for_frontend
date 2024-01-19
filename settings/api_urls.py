@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 
-app_name = 'setting'
+app_name = "setting"
 urlpatterns = [
-    path('settings/', include('settings.api.router')),
+    path("settings/", include("settings.api.router")),
 ]

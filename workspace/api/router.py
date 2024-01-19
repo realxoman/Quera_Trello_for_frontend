@@ -58,7 +58,7 @@ urlpatterns = [
         name="subscription_copy",
     ),
     path(
-        "subscriptions/invitation",
+        "subscriptions/invitation/<str:token>",
         SubscriptionInvitationViewSet.as_view(),
         name="subscriptions_invitation",
     ),

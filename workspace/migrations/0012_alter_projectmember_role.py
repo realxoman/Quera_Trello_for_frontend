@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0011_remove_workspacemember_role_projectmember_role_and_more'),
+        ("workspace", "0011_remove_workspacemember_role_projectmember_role_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='projectmember',
-            name='role',
-            field=models.IntegerField(choices=[(4, 'Full'), (3, 'Editor'), (2, 'Commentor'), (1, 'Viewer')], default=1, max_length=350, verbose_name='نقش\u200cکاربری'),
+            model_name="projectmember",
+            name="role",
+            field=models.IntegerField(
+                choices=[(4, "Full"), (3, "Editor"), (2, "Commentor"), (1, "Viewer")],
+                default=1,
+                max_length=350,
+                verbose_name="نقش\u200cکاربری",
+            ),
         ),
     ]

@@ -4,23 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0003_alter_taskassignee_task_alter_workspace_creator'),
+        ("workspace", "0003_alter_taskassignee_task_alter_workspace_creator"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='workspace',
-            name='thumbnail',
+            model_name="workspace",
+            name="thumbnail",
         ),
         migrations.RemoveField(
-            model_name='workspace',
-            name='thumbnail_alt',
+            model_name="workspace",
+            name="thumbnail_alt",
         ),
         migrations.AddField(
-            model_name='workspace',
-            name='color',
-            field=models.CharField(default='#000', max_length=256, verbose_name='Color'),
+            model_name="workspace",
+            name="color",
+            field=models.CharField(
+                default="#000", max_length=256, verbose_name="Color"
+            ),
         ),
     ]

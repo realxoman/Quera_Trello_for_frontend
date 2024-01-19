@@ -12,8 +12,7 @@ from drf_spectacular.utils import extend_schema
 class WorkspaceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     serializer_class = WorkspaceSerializer
-    lookup_field = 'id'
-    http_method_names = ['get', 'post', 'delete', 'patch']
+    lookup_field = "id"
 
     def get_queryset(self):
         """
@@ -21,13 +20,19 @@ class WorkspaceViewSet(viewsets.ModelViewSet):
         """
         user = self.request.user
         # Find workspace IDs to which the user has access
-        workspace_ids = WorkspaceMember.objects.filter(user=user).values_list('workspace_id', flat=True)
-        
+        workspace_ids = WorkspaceMember.objects.filter(user=user).values_list(
+            "workspace_id", flat=True
+        )
+
         # Return a filtered QuerySet of workspaces
         return Workspace.objects.filter(id__in=workspace_ids)
 
     def perform_create(self, serializer):
-        serializer.save(creator=self.request.user)
+        user = self.request.user
+        workspace = serializer.save(creator=user)
+        WorkspaceMember.objects.create(
+            workspace=workspace, user=user, is_super_access=True
+        )
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

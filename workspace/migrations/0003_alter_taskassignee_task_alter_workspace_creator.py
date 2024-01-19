@@ -6,21 +6,31 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('workspace', '0002_board_created_at_board_updated_at_project_created_at_and_more'),
+        (
+            "workspace",
+            "0002_board_created_at_board_updated_at_project_created_at_and_more",
+        ),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='taskassignee',
-            name='Task',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tasks_assignee', to='workspace.task'),
+            model_name="taskassignee",
+            name="Task",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="tasks_assignee",
+                to="workspace.task",
+            ),
         ),
         migrations.AlterField(
-            model_name='workspace',
-            name='creator',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='workspaces', to=settings.AUTH_USER_MODEL),
+            model_name="workspace",
+            name="creator",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="workspaces",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

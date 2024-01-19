@@ -15,8 +15,8 @@ class TaskLogViewSet(viewsets.ModelViewSet):
     permission_classes = [ProjectMemberPermission]
     required_permission = PermissionEnum.VIEWER
     serializer_class = TaskLogSerializer
-    lookup_field = 'id'
-    http_method_names = ['get']
+    lookup_field = "id"
+    http_method_names = ["get"]
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
@@ -24,8 +24,9 @@ class TaskLogViewSet(viewsets.ModelViewSet):
         return Response({"message": "حذف موفقیت آمیز بود"}, status=status.HTTP_200_OK)
 
     def get_queryset(self):
-        return TaskLog.objects.filter(
-            task_id=self.kwargs['task_id']).order_by('-created_at')
+        return TaskLog.objects.filter(task_id=self.kwargs["task_id"]).order_by(
+            "-created_at"
+        )
 
     def perform_create(self, serializer):
         serializer.save(creator=self.request.user)

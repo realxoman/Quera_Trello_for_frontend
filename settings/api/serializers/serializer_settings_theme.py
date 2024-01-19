@@ -10,10 +10,12 @@ class SettingsThemeSerializer(serializers.ModelSerializer):
         # Customize the error message for required fields
         for field_name, field in self.fields.items():
             if field.required:
-                field.error_messages['required'] = f'فیلد \
-                `{field.label}` الزامی است.'
+                field.error_messages[
+                    "required"
+                ] = f"فیلد \
+                `{field.label}` الزامی است."
 
     class Meta:
         model = Settings
-        fields = ['id', 'theme']
-        read_only_fields = ['id', 'user', 'created_at', 'updated_at']
+        fields = ["id", "theme"]
+        read_only_fields = ["id", "user", "created_at", "updated_at"]

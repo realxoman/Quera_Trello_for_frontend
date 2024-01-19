@@ -4,21 +4,16 @@ from django.contrib.auth import get_user_model
 
 
 class SettingsTest(TestCase):
-
     def setUp(self):
         # create a test user
         self.user = get_user_model().objects.create_user(
-            username='testuser',
-            password='testpassword'
+            username="testuser", password="testpassword"
         )
 
-        self.settings = Settings(
-            user=self.user,
-            theme=1
-        )
+        self.settings = Settings(user=self.user, theme=1)
 
     def test_model_theme(self):
         self.assertEqual(self.settings.theme, 1)
 
     def test_model_str(self):
-        self.assertEqual(str(self.settings), '1')
+        self.assertEqual(str(self.settings), "1")

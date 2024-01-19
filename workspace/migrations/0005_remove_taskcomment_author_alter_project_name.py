@@ -4,19 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('workspace', '0004_remove_workspace_thumbnail_and_more'),
+        ("workspace", "0004_remove_workspace_thumbnail_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='taskcomment',
-            name='author',
+            model_name="taskcomment",
+            name="author",
         ),
         migrations.AlterField(
-            model_name='project',
-            name='name',
-            field=models.CharField(max_length=255, verbose_name='name'),
+            model_name="project",
+            name="name",
+            field=models.CharField(max_length=255, verbose_name="name"),
         ),
     ]

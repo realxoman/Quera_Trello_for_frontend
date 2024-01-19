@@ -5,20 +5,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('account', '0001_initial'),
+        ("account", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='customuser',
-            name='phone_number',
-            field=models.CharField(blank=True, max_length=11, null=True, unique=True, validators=[django.core.validators.RegexValidator(message='The phone number is invalid.', regex='^\\+?1?\\d{9,15}$')]),
+            model_name="customuser",
+            name="phone_number",
+            field=models.CharField(
+                blank=True,
+                max_length=11,
+                null=True,
+                unique=True,
+                validators=[
+                    django.core.validators.RegexValidator(
+                        message="The phone number is invalid.",
+                        regex="^\\+?1?\\d{9,15}$",
+                    )
+                ],
+            ),
         ),
         migrations.AddField(
-            model_name='customuser',
-            name='thumbnail',
-            field=models.ImageField(blank=True, null=True, upload_to='profile_pics'),
+            model_name="customuser",
+            name="thumbnail",
+            field=models.ImageField(blank=True, null=True, upload_to="profile_pics"),
         ),
     ]

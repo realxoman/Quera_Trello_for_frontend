@@ -16,16 +16,14 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     permission_classes = [ProjectMemberPermission]
     required_permission = PermissionEnum.VIEWER
-    lookup_field = 'id'
-    http_method_names = ['get', 'post', 'delete', 'patch']
+    lookup_field = "id"
 
     def get_queryset(self):
-        return Task.objects.filter(
-            board_id=self.kwargs['board_id']).order_by('order')
+        return Task.objects.filter(board_id=self.kwargs["board_id"]).order_by("order")
 
     def get_serializer_context(self):
-        return {'board_id': self.kwargs['board_id']}
-    
+        return {"board_id": self.kwargs["board_id"]}
+
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
         self.perform_destroy(instance)
@@ -35,26 +33,30 @@ class TaskViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         data = request.data
 
-        if 'order' in data:
-            new_order = int(data['order'])
+        if "order" in data:
+            new_order = int(data["order"])
             tasks = self.get_queryset()
             old_order = instance.order
 
             if new_order < old_order:
                 tasks.filter(order__gte=new_order, order__lt=old_order).update(
-                    order=models.F('order') + 1)
+                    order=models.F("order") + 1
+                )
             elif new_order > old_order:
-                tasks.filter(
-                    order__gt=old_order, order__lte=new_order).update(
-                    order=models.F('order') - 1)
+                tasks.filter(order__gt=old_order, order__lte=new_order).update(
+                    order=models.F("order") - 1
+                )
 
             instance.order = new_order
             instance.save()
 
-        if 'priority' in data:
-            if instance.priority != data['priority']:
-                TaskLog(task=instance, old_priority=instance.priority,
-                        new_priority=data['priority']).save()
+        if "priority" in data:
+            if instance.priority != data["priority"]:
+                TaskLog(
+                    task=instance,
+                    old_priority=instance.priority,
+                    new_priority=data["priority"],
+                ).save()
         serializer = self.get_serializer(instance, data=data)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)

@@ -6,21 +6,28 @@ from account.api.viewset import (
     ChangePasswordViewSet,
     ResetPasswordViewSet,
     ResetPasswordTokenViewSet,
-    SetPasswordViewSet
+    SetPasswordViewSet,
 )
 
 router = routers.DefaultRouter()
-router.register('', UserRegisterViewSet)
+router.register("", UserRegisterViewSet)
 
 
 urlpatterns = [
     # Change/Reset password
-    path('change-password/', ChangePasswordViewSet.as_view(
-        {'put': 'change_password'}), name='change-password'),
-    path("reset-password/", ResetPasswordViewSet.as_view(),
-         name="reset-password-request"),
+    path(
+        "change-password/",
+        ChangePasswordViewSet.as_view({"put": "change_password"}),
+        name="change-password",
+    ),
+    path(
+        "reset-password/", ResetPasswordViewSet.as_view(), name="reset-password-request"
+    ),
     # path("reset-password/validate-token/",
     #      ResetPasswordTokenViewSet.as_view(), name="reset-password-validate"),
-    path("reset-password/set-password/",
-         SetPasswordViewSet.as_view(), name="reset-password-confirm"),
+    path(
+        "reset-password/set-password/",
+        SetPasswordViewSet.as_view(),
+        name="reset-password-confirm",
+    ),
 ]
